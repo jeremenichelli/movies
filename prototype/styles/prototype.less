@@ -1,0 +1,59 @@
+// variables
+@import '__variables.less';
+
+// normalize styles
+@import '__normalize.less';
+
+// GENERAL STYLES
+body {
+  background-color: @background-medium;
+  color: @text-dark;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  letter-spacing: .015em;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+
+  &:before, &:after {
+    box-sizing: inherit;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+// BIG PHONES AND TABLETS
+@media (min-width: @x-medium) {
+  body {
+    font-size: 16px;
+  }
+}
+
+// DESKTOP
+@media (min-width: @x-desktop) {
+  body {
+    font-size: 18px;
+  }
+}
+
+// COMPONENTS
+@import '_app.less';
+@import '_button.less';
+@import '_card.less';
+@import '_header.less';
+@import '_icon.less';
+@import '_search-form.less';
+@import '_search-results.less';
+@import '_movie-data.less';
+@import '_movie-thumb.less';

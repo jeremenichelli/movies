@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Web app created to explore the experience of using web components with different frameworks and libraries">
+
+  <title>Movies</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Raleway:100,300,300italic,800' rel='stylesheet'>
+
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <!-- SVG ICONS -->
+  <svg style="display:none">
+    <defs>
+      <g id="action">
+        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </g>
+      <g id="back">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+      </g>
+      <g id="search">
+        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </g>
+    </defs>
+  </svg>
+
+  <!-- APP -->
+  <div id="app">
+    <header>
+      <h1>Movies</h1>
+      <!-- <h2>
+        <a href="/" class="back">
+          <svg class="icon" viewBox="0 0 24 24" height="24" width="24">
+            <use xlink:href="#back"></use>
+          </svg>
+        </a>
+        <span>Back to Search</span>
+      </h2> -->
+      <h2>Look up fast information about your favorite titles</h2>
+    </header>
+    <main class="view search">
+      <div class="card hollow">
+        <form action="?" class="search__form">
+          <input type="text" class="js-search-input search__input" placeholder="Search">
+          <button type="submit" class="js-search-button search__button">
+            <svg class="icon" viewBox="0 0 24 24" height="24" width="24">
+              <use xlink:href="#search"></use>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <div class="card hollow">
+        <p><em>Search results for "Batman"</em></p>
+        <ul class="search__results">
+          <li class="search__result">
+            <a href="#" class="search__result-link">
+              <h3 class="search__result-title">
+                Batman: The Dark Knight
+                <svg class="icon" viewBox="0 0 24 24" height="24" width="24">
+                  <use xlink:href="#action"></use>
+                </svg>
+              </h3>
+              <p class="search__result-year">2008</p>
+            </a>
+          </li>
+          <li class="search__result">
+            <a href="#" class="search__result-link">
+              <h3 class="search__result-title">
+                Batman Begins
+                <svg class="icon" viewBox="0 0 24 24" height="24" width="24">
+                  <use xlink:href="#action"></use>
+                </svg>
+              </h3>
+              <p class="search__result-year">2005</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="card hollow">
+        <a href="" class="js-load-more more">Load more results</a>
+      </div>
+    </main>
+    <!-- <main class="view movie">
+      <div class="card">
+        <h3 class="movie__title">The Dark Knight</h3>
+        <dl class="movie__data">
+          <dt>Released</dt>
+          <dd>18 Jul 2008</dd>
+          <dt>Runtime</dt>
+          <dd>152 min</dd>
+          <dt>Director</dt>
+          <dd>Christopher Nolan</dd>
+          <dt>Cast</dt>
+          <dd>Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine</dd>
+          <dt>IMDb Rating</dt>
+          <dd>9.0</dd>
+        </dl>
+        <div class="movie__thumb">
+          <div class="movie__thumb__container">
+            <img src="http://ia.media-imdb.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg" alt="" class="movie__thumb__img" onload="this.style.opacity=1;this.onload=null">
+          </div>
+        </div>
+        <p class="movie__plot">
+          <span class="movie__plot__label">Plot</span> Set within a year after the events of Batman Begins, Batman, Lieutenant James Gordon, and new district attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City until a mysterious and sadistic criminal mastermind known only as the Joker appears in Gotham, creating a new wave of chaos. Batman's struggle against the Joker becomes deeply personal, forcing him to "confront everything he believes" and improve his technology to stop him. A love triangle develops between Bruce Wayne, Dent and Rachel Dawes
+        </p>
+      </div>
+    </main> -->
+  </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+// variables
+@import '__variables.less';
+
+.movie__thumb {
+  background-color: @secondary;
+  float: left;
+  margin: 0 25px 10px 0;
+  width: 100px;
+}
+
+.movie__thumb__container {
+  height: 0;
+  padding: 148% 0 0;
+  position: relative;
+}
+
+.movie__thumb__img {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity .25s ease;
+}
+
+// BIG PHONES AND TABLETS
+@media (min-width: @x-medium) {
+    .movie__thumb {
+      width: 150px;
+    }
+}
+
+// DESKTOP
+@media (min-width: @x-desktop) {
+  .movie__thumb {
+    width: 200px;
+  }
+}

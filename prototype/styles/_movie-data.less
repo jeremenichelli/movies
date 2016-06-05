@@ -1,0 +1,61 @@
+// variables
+@import '__variables.less';
+
+.movie {
+  line-height: 1.5;
+}
+
+.movie__title {
+  font-size: 1.45em;
+  margin: 0 0 .67em;
+}
+
+.movie__data {
+  clear: both;
+
+  dt {
+    color: @accent;
+    display: inline-block;
+    .label();
+  }
+
+  dd {
+    display: inline;
+    margin: 0;
+
+    &:after {
+      color: @secondary;
+      content: '/';
+      font-weight: 400;
+      margin: 0 5px 0 8px;
+    }
+
+    &:last-child {
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+}
+
+.movie__plot__label {
+  color: @secondary;
+  .label();
+}
+
+.movie__plot {
+  margin-top: -.25em;
+}
+
+// BIG PHONES AND TABLETS
+@media (min-width: @x-medium) {
+  .movie__plot {
+    font-size: .9em;
+  }
+}
+
+// DESKTOP
+@media (min-width: @x-desktop) {
+
+}

@@ -1,0 +1,19 @@
+// variables
+@import '__variables.less';
+
+.card {
+  margin: auto;
+  max-width: 640px;
+  padding: 15px;
+}
+
+.card:not(.hollow) {
+  background-color: @background-light;
+}
+
+// DESKTOP
+@media (min-width: @x-desktop) {
+  .card {
+    padding: 35px;
+  }
+}

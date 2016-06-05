@@ -1,0 +1,15 @@
+{
+  "name": "prototype",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "build": "lessc styles/prototype.less > styles.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeremias Menichelli",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "less": "^2.7.1"
+  }
+}
