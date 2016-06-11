@@ -1,7 +1,6 @@
+import { baseUrl } from '../helpers/constants';
 import cormoran from 'cormoran';
-import baseUrl from '../helpers/constants';
 
-// cormoran config for movie service
 cormoran
   .query('&callback')
   .naming('movieJSONPCallback');
@@ -11,7 +10,7 @@ cormoran
  * with the result from the OMDB API
  */
 function movie(id) {
-  const url = `${baseUrl}&i=${id}`;
+  const url = `${ baseUrl }&i=${ id }`;
 
   return cormoran.get(url);
 }
