@@ -1,0 +1,88 @@
+@import './_normalize.less';
+@import './_variables.less';
+
+// GENERAL STYLES
+body {
+  background-color: @background-medium;
+  color: @text-dark;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  letter-spacing: .015em;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+
+  &:before, &:after {
+    box-sizing: inherit;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+.app {
+  padding: 0 1em 2em;
+}
+
+header {
+  margin: 0 0 45px;
+}
+
+h1 {
+  font-weight: 100;
+  line-height: 1.1;
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 1em;
+  font-weight: 800;
+  height: 25px;
+  line-height: 25px;
+}
+
+h2 span {
+  vertical-align: middle;
+}
+
+.back {
+  color: inherit;
+  text-decoration: none;
+}
+
+// BIG PHONES AND TABLETS
+@media (min-width: @x-medium) {
+  body {
+    font-size: 16px;
+  }
+
+  .app {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+}
+
+// DESKTOP
+@media (min-width: @x-desktop) {
+  body {
+    font-size: 18px;
+  }
+
+  header {
+    margin-bottom: 60px;
+  }
+
+  h1 {
+    font-size: 3em;
+  }
+}

@@ -3,10 +3,10 @@
     <search-box></search-box>
   </div>
   <div class="card hollow" v-show="!results.length && noResults">
-    <p><em>No results for &laquo;<span v-text="searchTitle"></span></em>&raquo;</p>
+    <p><em>No results for &laquo;<span v-text="searchTitle"></span>&raquo;</em></p>
   </div>
   <div class="card hollow" v-show="results.length">
-    <p><em>Search results for &laquo;<span v-text="searchTitle"></span></em>&raquo;</p>
+    <p><em>Search results for &laquo;<span v-text="searchTitle"></span>&raquo;</em></p>
     <ul class="search__results">
       <search-result v-for="r in results" :movie="r"></search-result>
     </ul>

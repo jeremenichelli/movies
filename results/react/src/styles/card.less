@@ -1,0 +1,23 @@
+@import './_variables.less';
+
+.card {
+  margin: auto;
+  max-width: 640px;
+  padding: 10px;
+}
+
+.card:not(.hollow) {
+  background-color: @background-light;
+}
+
+// BIG PHONES AND TABLETS
+@media (min-width: @x-medium) {
+
+}
+
+// DESKTOP
+@media (min-width: @x-desktop) {
+  .card {
+    padding: 35px;
+  }
+}

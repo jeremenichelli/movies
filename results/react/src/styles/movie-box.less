@@ -1,0 +1,76 @@
+@import './_variables.less';
+
+.movie__box {
+  overflow: hidden;
+}
+
+.movie__title {
+  font-size: 1.45em;
+  margin: 0 0 .67em;
+}
+
+.movie__data {
+  clear: both;
+
+  dt {
+    color: @accent;
+    display: inline-block;
+    .label();
+  }
+
+  dd {
+    display: inline;
+    margin: 0 0 0 5px;
+
+    &:after {
+      color: @secondary;
+      content: '/';
+      font-weight: 400;
+      margin: 0 5px 0 8px;
+    }
+
+    &:last-child {
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+}
+
+.movie__plot__label {
+  color: @secondary;
+  margin: 0 5px 0 0;
+  .label();
+}
+
+.movie__plot {
+  margin-top: -.25em;
+}
+
+.movie__thumb {
+  background-color: @secondary;
+  float: left;
+  margin: 0 25px 10px 0;
+  min-height: 100px;
+  width: 100px;
+}
+
+
+// BIG PHONES AND TABLETS
+@media (min-width: @x-medium) {
+  .movie__thumb {
+    width: 150px;
+  }
+
+  .movie__plot {
+    font-size: .9em;
+  }
+}
+
+// DESKTOP
+@media (min-width: @x-desktop) {
+  .movie__thumb {
+    width: 200px;
+  }
+}
