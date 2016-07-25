@@ -1,0 +1,79 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="loading-bar">
+  <template>
+    <style>
+      .progress {
+        height: 4px;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        transition: opacity .15s ease;
+      }
+
+      .indeterminate {
+        background-color: var(--accent);
+        width: 70%;
+      }
+
+      .indeterminate:before,
+      .indeterminate:after {
+        -moz-animation: indeterminate 1s cubic-bezier(.65, .815, .735, .395) infinite;
+        -webkit-animation: indeterminate 1s cubic-bezier(.65, .815, .735, .395) infinite;
+        animation: indeterminate 1s cubic-bezier(.65, .815, .735, .395) infinite;
+        content: '';
+        bottom: 0;
+        top: 0;
+        position: absolute;
+        background-color: inherit;
+        left: 0;
+        will-change: left,right;
+      }
+
+      @-webkit-keyframes indeterminate {
+        0% {
+          left:-35%;
+          right:100%
+        }
+        100%,60% {
+          left:100%;
+          right:-90%
+        }
+      }
+
+      @-moz-keyframes indeterminate {
+        0% {
+          left:-35%;
+          right:100%
+        }
+        100%,60% {
+          left:100%;
+          right:-90%
+        }
+      }
+
+      @keyframes indeterminate {
+        0% {
+          left:-35%;
+          right:100%
+        }
+        100%,60% {
+          left:100%;
+          right:-90%
+        }
+      }
+    </style>
+
+    <div class="progress">
+      <div class="indeterminate"></div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'loading-bar'
+    });
+  </script>
+</dom-module>

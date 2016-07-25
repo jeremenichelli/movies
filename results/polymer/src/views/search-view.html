@@ -1,0 +1,120 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<!-- COMPONENTS -->
+<link rel="import" href="../components/content-card.html">
+<link rel="import" href="../components/search-box.html">
+<link rel="import" href="../components/search-result.html">
+
+<dom-module id="search-view">
+  <template>
+    <style>
+      .search__results {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .more {
+        color: var(--accent);
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        /* LABEL */
+        font-size: var(--label-font-size);
+        font-weight: var(--label-font-weight);
+        letter-spacing: var(--label-letter-spacing);
+        text-transform: var(--label-text-transform);
+      }
+
+      content-card p {
+        margin-top: 0;
+      }
+    </style>
+
+    <content-card hollow>
+      <search-box
+        searching="{{ loading }}",
+        results="{{ results }}",
+        page-results="{{ pageResults }}",
+        search-title="{{ searchTitle }}"
+        total-results="{{ totalResults }}"
+        no-results="{{ noResults }}"
+      ></search-box>
+    </content-card>
+
+    <content-card hollow>
+      <p hidden$="[[ !results.length ]]">
+        <em>Search results for &laquo;{{ searchTitle }}&raquo;</em>
+      </p>
+      <p hidden$="[[ noResults ]]">
+        <em>No results for &laquo;{{ searchTitle }}&raquo;</em>
+      </p>
+      <ul class="search__results">
+        <template is="dom-repeat" items="{{ results }}">
+          <search-result data="[[ item ]]"></search-result>
+        </template>
+      </ul>
+    </content-card>
+
+    <content-card hollow hidden$="[[ hideMore ]]">
+      <a href="#" class="more" on-click="_getMoreResults">
+        Load more results</a>
+    </content-card>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'search-view',
+      properties: {
+        loading: {
+          type: Boolean,
+          value: true,
+          notify: true
+        },
+        results: {
+          type: Array,
+          value: []
+        },
+        pageResults: Number,
+        searchTitle: {
+          type: String,
+          value: ''
+        },
+        totalResults: {
+          type: Number,
+          value: 0
+        },
+        hideMore: {
+          type: Boolean,
+          value: false,
+          computed: '_updateHideMore(results, totalResults)'
+        },
+        noResults: {
+          type: Boolean,
+          value: true
+        },
+      },
+      attached: function() {
+        this.loading = false;
+      },
+      _updateHideMore: function(results, totalResults) {
+        return !(results.length < totalResults && results.length);
+      },
+      _getMoreResults: function(e) {
+        e.preventDefault();
+
+        this.loading = true;
+
+        search(this.searchTitle, this.pageResults + 1)
+          .then(data => {
+            const results = this.results.concat(data.Search);
+
+            this.results = results;
+            this.pageResults = ++this.pageResults;
+
+            this.loading = false;
+          });
+        }
+    });
+  </script>
+</dom-module>

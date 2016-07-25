@@ -1,0 +1,141 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+
+<!-- IMPORT GENERAL STYLES -->
+<link rel="import" href="../styles/normalize.html">
+<link rel="import" href="../styles/general.html">
+
+<!-- SERVICES -->
+<link rel="import" href="../services/movie.html">
+
+<!-- COMPONENTS -->
+<link rel="import" href="loading-bar.html">
+
+<!-- VIEWS -->
+<link rel="import" href="../views/search-view.html">
+<link rel="import" href="../views/movie-view.html">
+
+<dom-module id="movies-app">
+  <template>
+    <style>
+      /* VARIABLES */
+      :root {
+        // colors
+        --background-medium: #cfd8dc;
+        --background-light: #ffffff;
+
+        --text-dark: #212121;
+        --text-light: #ffffff;
+
+        --accent: #ec5a62;
+        --secondary: #b0bec5;
+
+        // labels
+        --label-font-size: .9em;
+        --label-font-weight: 800;
+        --label-letter-spacing: .03em;
+        --label-text-transform: uppercase;
+      }
+
+      /* COMPONENT STYLES */
+      .app {
+        padding: 0 1em 2em;
+      }
+
+      .back {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* BIG PHONES AND TABLETS */
+      @media (min-width: 481px) {
+        .app {
+          padding-left: 2em;
+          padding-right: 2em;
+        }
+      }
+
+      /* DESKTOP */
+      @media (min-width: 769px) {
+
+      }
+    </style>
+
+    <div class="app">
+      <loading-bar hidden$="[[ !loading ]]"></loading-bar>
+      <header>
+        <h1>Movies</h1>
+        <h2 hidden$="{{ !searchActive }}">Look up fast information about your favorite titles</h2>
+        <h2 hidden$="{{ !movieActive }}">
+          <a href="/" class="back">
+            <svg class="icon" viewBox="0 0 24 24" height="24" width="24">
+              <use xlink:href="#back"></use>
+            </svg>
+            <span>Back to Search</span>
+          </a>
+        </h2>
+      </header>
+
+      <app-location route="{{ route }}"></app-location>
+
+      <!-- this app-route manages the top-level routes -->
+      <app-route
+          route="{{ route }}"
+          pattern="/:view"
+          data="{{ routeData }}"
+          tail="{{ subRoute }}"></app-route>
+
+      <app-route
+          route="{{ route }}"
+          pattern="/"
+          active="{{ searchActive }}">
+      </app-route>
+
+      <app-route
+          route="{{ route }}"
+          pattern="/movie/:id"
+          active="{{ movieActive }}">
+      </app-route>
+
+      <main class="view">
+        <search-view hidden$="{{ !searchActive }}" loading="{{ loading }}"></search-view>
+        <movie-view hidden$="{{ !movieActive }}" loading="{{ loading }}" data="{{ movieData }}"></movie-view>
+      </main>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'movies-app',
+      properties: {
+        loading: {
+          type: Boolean,
+          value: true
+        },
+        searchActive: {
+          type: Boolean
+        },
+        movieActive: {
+          type: Boolean
+        }
+      },
+      observers: [
+        '_viewChanged(routeData.view)'
+      ],
+      _viewChanged: function(view) {
+        if (view === 'movie') {
+          this.loading = true;
+          // hacky way to obtain movie id
+          var movieID = this.route.path.split('/')[2];
+
+          movie(movieID)
+           .then(data => {
+             this.movieData = data;
+             this.loading = false;
+           });
+        }
+      }
+    });
+  </script>
+</dom-module>

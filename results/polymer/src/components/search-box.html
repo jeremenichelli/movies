@@ -1,0 +1,129 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../services/search.html">
+
+<dom-module id="search-box">
+  <template>
+    <style>
+      .search__form {
+        position: relative;
+        padding: 0 45px 0 0;
+      }
+
+      .search__input {
+        border-width: 0;
+        font-style: italic;
+        height: 45px;
+        letter-spacing: inherit;
+        opacity: .85;
+        padding: 10px 20px;
+        width: 100%;
+        transition: opacity .15s ease;
+      }
+
+      .search__input:focus {
+        outline: none;
+        opacity: 1;
+      }
+
+      .search__button {
+        background-color: var(--accent);
+        border-width: 0;
+        color: var(--text-light);
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 45px;
+        width: 45px;
+        transition: background-color .25s ease;
+      }
+
+      .search__button[disabled] {
+        background-color: var(--secondary);
+        cursor: default;
+      }
+    </style>
+
+    <form action="/?" class="search__form" on-submit="_onSubmit">
+      <input type="text" placeholder="Search" class="search__input"
+        on-input="_handleChange"/>
+      <button type="submit" class="search__button" disabled$="{{ disabled }}">
+        <svg class="icon" viewBox="0 0 24 24" height="24" width="24">
+          <use xlink:href="#search"></use>
+        </svg>
+      </button>
+    </form>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'search-box',
+      properties: {
+        searching: {
+          type: Boolean,
+          value: false,
+          notify: true
+        },
+        title: {
+          type: String,
+          value: ''
+        },
+        results: {
+          type: Array,
+          notify: true
+        },
+        pageResults: {
+          type: Number,
+          notify: true
+        },
+        searchTitle: {
+          type: String,
+          notify: true
+        },
+        totalResults: {
+          type: Number,
+          notify: true
+        },
+        noResults: {
+          type: Boolean,
+          notify: true
+        },
+        disabled: {
+          type: Boolean,
+          computed: '_updateDisabled(title, searching)'
+        }
+      },
+      _updateDisabled: function(title, searching) {
+        return !title || searching;
+      },
+      _handleChange: function(e) {
+        this.title = e.target.value;
+      },
+      _onSubmit: function(e) {
+        e.preventDefault();
+
+        // reset view data
+        this.results = [];
+        this.pageResults = 1;
+
+        // indicate searching state
+        this.searching = true;
+
+        search(this.title)
+          .then(data => {
+            var results = data.Search && data.Search.length ? data.Search : [];
+
+            // enable search again
+            this.searching = false;
+
+            // pass data to parent component
+            this.searchTitle = this.title;
+            this.results = results;
+            this.noResults = !!results.length;
+            this.totalResults = data.totalResults;
+          });
+      }
+    });
+  </script>
+</dom-module>

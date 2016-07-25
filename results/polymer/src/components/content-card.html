@@ -1,0 +1,38 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="content-card">
+  <template>
+    <style>
+      .card {
+        background-color: var(--background-light);
+        margin: auto;
+        max-width: 640px;
+        padding: 10px;
+      }
+
+      :host([ hollow ]) .card {
+        background-color: transparent;
+      }
+
+      /*BIG PHONES AND TABLETS */
+      @media (min-width: 481px) { }
+
+      /* DESKTOP */
+      @media (min-width: 769px) {
+        .card {
+          padding: 35px;
+        }
+      }
+    </style>
+
+    <div class="card">
+      <content></content>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'content-card'
+    });
+  </script>
+</dom-module>

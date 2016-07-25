@@ -1,0 +1,117 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="movie-box">
+  <template>
+    <style>
+      .movie__box {
+        overflow: hidden;
+      }
+
+      .movie__title {
+        font-size: 1.45em;
+        margin: 0 0 .67em;
+      }
+
+      .movie__data {
+        clear: both;
+      }
+
+      dt {
+        color: var(--accent);
+        display: inline-block;
+        /* LABEL */
+        font-size: var(--label-font-size);
+        font-weight: var(--label-font-weight);
+        letter-spacing: var(--label-letter-spacing);
+        text-transform: var(--label-text-transform);
+      }
+
+      dd {
+        display: inline;
+        margin: 0 0 0 5px;
+      }
+
+      dd:after {
+        color: var(--secondary);
+        content: '/';
+        font-weight: 400;
+        margin: 0 5px 0 8px;
+      }
+
+      dd:last-child:after {
+        display: none;
+      }
+
+      .movie__plot__label {
+        color: var(--secondary);
+        margin: 0 5px 0 0;
+        /* LABEL */
+        font-size: var(--label-font-size);
+        font-weight: var(--label-font-weight);
+        letter-spacing: var(--label-letter-spacing);
+        text-transform: var(--label-text-transform);
+      }
+
+      .movie__plot {
+        margin-top: -.25em;
+      }
+
+      .movie__thumb {
+        background-color: var(--secondary);
+        float: left;
+        margin: 0 25px 10px 0;
+        min-height: 100px;
+        width: 100px;
+      }
+
+      /* BIG PHONES AND TABLETS */
+      @media (min-width: 481px) {
+        .movie__thumb {
+          width: 150px;
+        }
+
+        .movie__plot {
+          font-size: .9em;
+        }
+      }
+
+      /* DESKTOP */
+      @media (min-width: 769px) {
+        .movie__thumb {
+          width: 200px;
+        }
+      }
+    </style>
+
+    <div class="movie__box">
+      <h3 class="movie__title">{{ data.Title }}</h3>
+      <dl class="movie__data">
+        <dt>Released</dt>
+        <dd>{{ data.Released }}</dd>
+        <dt>Runtime</dt>
+        <dd>{{ data.Runtime }}</dd>
+        <dt>Director</dt>
+        <dd>{{ data.Director }}</dd>
+        <dt>Cast</dt>
+        <dd>{{ data.Actors }}</dd>
+        <dt>IMDb Rating</dt>
+        <dd>{{ data.imdbRating }}</dd>
+      </dl>
+      <img src$="[[ data.Poster ]]" alt="" class="movie__thumb"
+        hidden$="[[ data.Poster === 'N/A' ]]"/>
+      <p class="movie__plot">
+        <span class="movie__plot__label">Plot</span>
+        <span>{{ data.Plot }}</span>
+      </p>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'movie-box',
+      properties: {
+        data: Object
+      }
+    });
+  </script>
+</dom-module>

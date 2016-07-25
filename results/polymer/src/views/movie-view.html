@@ -1,0 +1,37 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<!-- COMPONENTS -->
+<link rel="import" href="../components/content-card.html">
+<link rel="import" href="../components/movie-box.html">
+
+<dom-module id="movie-view">
+  <template>
+    <style>
+    .movie {
+      line-height: 1.5;
+      opacity: 0;
+      transition: all .25s ease;
+    }
+    </style>
+
+    <content-card hidden$="[[ loading ]]">
+      <movie-box data="[[ data ]]"></movie-box>
+    </content-card>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'movie-view',
+      properties: {
+        loading: {
+          type: Boolean,
+          notify: true
+        },
+        data: Object
+      },
+      attached: function() {
+        this.loading = true;
+      }
+    });
+  </script>
+</dom-module>

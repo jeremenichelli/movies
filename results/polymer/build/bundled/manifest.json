@@ -1,0 +1,7 @@
+{
+  "name": "movies",
+  "short_name": "movies",
+  "description": "Movies simple web app built with polymer",
+  "start_url": "/",
+  "display": "standalone"
+}
