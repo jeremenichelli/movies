@@ -68,7 +68,6 @@
       properties: {
         loading: {
           type: Boolean,
-          value: true,
           notify: true
         },
         results: {
@@ -93,9 +92,6 @@
           type: Boolean,
           value: true
         },
-      },
-      attached: function() {
-        this.loading = false;
       },
       _updateHideMore: function(results, totalResults) {
         return !(results.length < totalResults && results.length);
