@@ -1,15 +1,14 @@
 {
-  "name": "react-boilerplate",
-  "version": "0.3.3",
+  "name": "Movies",
+  "description": "A simple React web app",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rbartoli/react-boilerplate"
+    "url": "git+https://github.com/jeremenichelli/movies"
   },
   "author": {
-    "name": "Riccardo Bartoli",
-    "email": "info@rblab.com",
-    "url": "http://rblab.com"
+    "name": "Jeremias Menichelli",
+    "email": "jmenichelli@gmail.com"
   },
   "dependencies": {
     "react": "^15.1.0",

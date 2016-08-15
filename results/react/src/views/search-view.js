@@ -22,6 +22,7 @@ export default class SearchView extends Component {
       results: [],
       searchTitle: '',
       totalResults: 0,
+      noResults: true
     };
 
     // bind event context
@@ -39,6 +40,7 @@ export default class SearchView extends Component {
   }
   setResults(results, total) {
     this.setState({ results: results });
+    this.setState({ noResults: !!results.length });
     this.setState({ totalResults: total });
   }
   getMoreResults(e) {
@@ -86,6 +88,9 @@ export default class SearchView extends Component {
         <Card hollow>
           <p hidden={ !this.state.results.length }>
             <em>Search results for &laquo;{ this.state.searchTitle }&raquo;</em>
+          </p>
+          <p hidden={ this.state.noResults }>
+            <em>No search results for &laquo;{ this.state.searchTitle }&raquo;</em>
           </p>
           <ul className={ styles.search__results }>
           {
