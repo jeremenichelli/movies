@@ -1,1 +1,8 @@
-<h1>Movie view!</h1>
+<loading-bar [hidden]="loaded"></loading-bar>
+
+<card *ngIf="loaded">
+  <movie-box
+    class="movie"
+    [data]="data">
+  </movie-box>
+</card>

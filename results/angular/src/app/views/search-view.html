@@ -1,1 +1,27 @@
-<h1>Search view</h1>
+<loading-bar [hidden]="!searching"></loading-bar>
+
+<card hollow>
+  <search-box
+   (onSearchStarted)="onSearchStarted($event)"
+   (onSearchFinished)="onSearchFinished($event)"
+  ></search-box>
+</card>
+
+<card hollow>
+  <p [hidden]="!this.results.length">
+    <em>Search results for &laquo;{{ searchTitle }}&raquo;</em>
+  </p>
+  <p [hidden]="this.noResults">
+    <em>No search results for &laquo;{{ searchTitle }}&raquo;</em>
+  </p>
+  <ul class="search__results">
+    <search-result *ngFor="let result of results" [data]="result"></search-result>
+  </ul>
+</card>
+
+<card hollow
+  [hidden]="!(results.length < totalResults && results.length)">
+  <a href="#" class="more" (click)="getMoreResults($event)">
+    Load more results
+  </a>
+</card>

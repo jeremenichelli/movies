@@ -1,16 +1,18 @@
-<h3>
-  Angular 2 Seed
-</h3>
-<nav>
-	<a [routerLink]="['/']">
-    search
-  </a>
-  |
-	<a [routerLink]="['/movie']">
-    movie
-  </a>
-</nav>
+<div class="app">
+  <header>
+    <h1>Movies</h1>
+    <a [hidden]="!isMovieView" [routerLink]="['/']" class="back">
+      <h2>
+        <svg class="icon" viewBox="0 0 24 24" height="24" width="24">
+          <use xlink:href="#back"></use>
+        </svg>
+        <span>Back to Search</span>
+      </h2>
+    </a>
+    <h2 [hidden]="isMovieView">Look up fast information about your favorite titles</h2>
+  </header>
 
-<main>
-	<router-outlet></router-outlet>
-</main>
+  <main class="view">
+    <router-outlet></router-outlet>
+  </main>
+</div>

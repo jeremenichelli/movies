@@ -1,0 +1,14 @@
+<li class="search__result">
+  <a [routerLink]="moviePath" class="search__result_link">
+    <h3 class="search__result_title">
+      <span>{{ data.Title }}</span>
+      <svg class="icon" viewBox="0 0 24 24" height="24" width="24">
+        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </svg>
+    </h3>
+    <p class="search__result_year">
+      {{ data.Year }}
+    </p>
+  </a>
+</li>

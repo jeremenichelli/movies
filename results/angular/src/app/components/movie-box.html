@@ -1,0 +1,21 @@
+<div class="movie__box">
+  <h3 class="movie__title">{{ data.Title }}</h3>
+  <dl class="movie__data">
+    <dt>Released</dt>
+    <dd>{{ data.Released }}</dd>
+    <dt>Runtime</dt>
+    <dd>{{ data.Runtime }}</dd>
+    <dt>Director</dt>
+    <dd>{{ data.Director }}</dd>
+    <dt>Cast</dt>
+    <dd>{{ data.Actors }}</dd>
+    <dt>IMDb Rating</dt>
+    <dd>{{ data.imdbRating }}</dd>
+  </dl>
+  <img [src]="data.Poster" alt="" class="movie__thumb"
+    [hidden]="data.Poster === 'N/A'"/>
+  <p class="movie__plot">
+    <span class="movie__plot__label">Plot</span>
+    <span>{{ data.Plot }}</span>
+  </p>
+</div>

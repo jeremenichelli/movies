@@ -1,0 +1,24 @@
+@import '../styles/variables.less';
+
+.card {
+  background-color: @background-light;
+  margin: auto;
+  max-width: 640px;
+  padding: 10px;
+
+  [hollow] & {
+    background-color: transparent;
+  }
+}
+
+// BIG PHONES AND TABLETS
+@media (min-width: @x-medium) {
+
+}
+
+// DESKTOP
+@media (min-width: @x-desktop) {
+  .card {
+    padding: 35px;
+  }
+}

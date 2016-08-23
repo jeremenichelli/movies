@@ -1,0 +1,45 @@
+@import '../styles/variables.less';
+
+.search__form {
+  position: relative;
+  padding: 0 45px 0 0;
+}
+
+.search__input {
+  border-width: 0;
+  font-style: italic;
+  height: 45px;
+  letter-spacing: inherit;
+  opacity: .85;
+  padding: 10px 20px;
+  width: 100%;
+  transition: opacity .15s ease;
+
+  &:focus {
+    outline: none;
+    opacity: 1;
+  }
+}
+
+.search__button {
+  background-color: @accent;
+  border-width: 0;
+  color: @text-light;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 45px;
+  width: 45px;
+  transition: background-color .25s ease;
+
+  &[disabled] {
+    background-color: @secondary;
+    cursor: default;
+  }
+}
+
+.icon {
+  vertical-align: middle;
+  fill: currentColor;
+}
