@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { SearchService } from '../services/search-service';
 
 let bufferData;

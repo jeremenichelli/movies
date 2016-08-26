@@ -16,7 +16,6 @@ export class SearchBox {
 
   constructor(public search: SearchService) {}
 
-
   onSubmit() {
     // disable search
     this.searching = true;
