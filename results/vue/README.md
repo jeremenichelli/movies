@@ -1,18 +1,7 @@
-# movies
+# Simple movie web app built with Vue
 
-> A Vue.js project
+Web app created to explore benefits and cavetas on using Vue to compose an application based on components judging documentation, environment, and personal preference on technical stack.
 
-## Build Setup
+For more go to: http://jeremenichelli.github.io/2016/06/building-component-based-app-vue/
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+_Vue CLI was used to generate the starting point of this project._

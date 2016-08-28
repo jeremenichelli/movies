@@ -1,38 +1,7 @@
-# \<movies\>
+# Simple movie web app built with Polymer
 
-Movies simple web app built with polymer
+Web app created to explore benefits and cavetas on using Polymer to compose an application based on components judging documentation, environment, and personal preference on technical stack.
 
-## Install the Polymer-CLI
+For more go to: http://jeremenichelli.github.io/2016/08/building-a-component-based-app-polymer/
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
-
-## Viewing Your Application
-
-```
-$ polymer serve
-```
-
-## Building Your Application
-
-```
-$ polymer build
-```
-
-This will create a `build/` folder with `bundled/` and `unbundled/` sub-folders
-containing a bundled (Vulcanized) and unbundled builds, both run through HTML,
-CSS, and JS optimizers.
-
-You can serve the built versions by giving `polymer serve` a folder to serve
-from:
-
-```
-$ polymer serve build/bundled
-```
-
-## Running Tests
-
-```
-$ polymer test
-```
-
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
+_Poylmer CLI was used to generate the starting point of this project._
