@@ -32,6 +32,7 @@ export class SearchView {
     this.results = data.Search || [];
     this.noResults = !!this.results.length;
     this.totalResults = data.totalResults;
+    this.noResults = !!this.results.length;
 
     this.searching = false;
   }

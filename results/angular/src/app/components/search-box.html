@@ -1,5 +1,5 @@
 <form action="/?" class="search__form" (ngSubmit)="onSubmit()" autocomplete="off">
-  <input type="text" placeholder="Search" class="search__input"
+  <input type="text" placeholder="Search" class="search__input" [disabled]="searching"
     [(ngModel)]="searchTitle" name="searchTitle"/>
   <button type="submit" class="search__button" [disabled]="!searchTitle.length || searching">
     <svg class="icon" viewBox="0 0 24 24" height="24" width="24">

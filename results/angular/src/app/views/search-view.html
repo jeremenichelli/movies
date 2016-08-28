@@ -8,10 +8,10 @@
 </card>
 
 <card hollow>
-  <p [hidden]="!this.results.length">
+  <p [hidden]="!results.length">
     <em>Search results for &laquo;{{ searchTitle }}&raquo;</em>
   </p>
-  <p [hidden]="this.noResults">
+  <p [hidden]="noResults || searching">
     <em>No search results for &laquo;{{ searchTitle }}&raquo;</em>
   </p>
   <ul class="search__results">
