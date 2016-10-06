@@ -1,18 +1,25 @@
 <template>
-  <div class="card movie" :class="{ 'loaded': loaded }">
-    <movie-box :movie="movie"></movie-box>
+  <div id="movie-view">
+    <loading-bar :visible="loading"></loading-bar>
+    <div class="card movie" :class="{ 'loaded': loaded }">
+      <movie-box :movie="movie"></movie-box>
+    </div>
+  </div>
 </template>
 
 <script>
 import movie from '../services/movie';
 import movieBox from '../components/movie-box.vue';
+import loadingBar from '../components/loading-bar.vue';
 
 export default {
   components: {
-    movieBox
+    movieBox,
+    loadingBar
   },
   data() {
     return {
+      loading: true,
       movie: {}
     };
   },
@@ -24,14 +31,14 @@ export default {
       }
     }
   },
-  attached() {
-    this.$router.app.loading = true;
+  mounted() {
+    this.loading = true;
     // fetch movie data
     movie(this.$route.params.id)
      .then(data => {
        this.movie = data;
        this.loaded = true;
-       this.$router.app.loading = false;
+       this.loading = false;
      });
   }
 }

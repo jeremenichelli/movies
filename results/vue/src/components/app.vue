@@ -1,18 +1,15 @@
 <template>
   <div id="app">
-    <loading-bar :visible="loading"></loading-bar>
     <header>
       <h1>Movies</h1>
-
       <h2 v-show="$route.name === 'search'">Look up fast information about your favorite titles</h2>
-
       <h2 v-show="$route.name === 'movie'">
-        <a v-link="{ path: '/' }" class="back">
+        <router-link :to="{ path: '/' }" class="back">
           <svg class="icon" viewBox="0 0 24 24" height="24" width="24">
             <use xlink:href="#back"></use>
           </svg>
           <span>Back to Search</span>
-        </a>
+        </router-link>
       </h2>
 
     </header>
@@ -23,17 +20,8 @@
 </template>
 
 <script>
-import loadingBar from './loading-bar.vue';
 
 export default {
-  data() {
-    return {
-      loading: true
-    }
-  },
-  components: {
-    loadingBar
-  }
 }
 </script>
 

@@ -1,4 +1,5 @@
 <template>
+  <div id="movie-box">
     <h3 class="movie__title" v-text="movie.Title"></h3>
     <dl class="movie__data">
       <dt>Released</dt>
@@ -17,6 +18,7 @@
       <span class="movie__plot__label">Plot</span>
       <span v-text="movie.Plot"></span>
     </p>
+  </div>
 </template>
 
 <script>

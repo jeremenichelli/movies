@@ -12,22 +12,19 @@ import movieView from './views/movie-view.vue';
 Vue.use(VueRouter);
 
 let router = new VueRouter({
+  routes: [
+    { name: 'search', path: '/', component: searchView },
+    { name: 'movie', path: '/movie/:id', component: movieView }
+  ],
   hashbang: false,
-  history: true,
+  mode: 'history',
   root: '/',
   saveScrollPosition: true
 });
 
-router.map({
-  '/': {
-    component: searchView,
-    name: 'search'
-  },
-  '/movie/:id': {
-    component: movieView,
-    name: 'movie'
-  }
-});
-
 // start app
-router.start(app, 'app');
+new Vue({
+  el: '#app',
+  router,
+  render: h => h(app)
+});

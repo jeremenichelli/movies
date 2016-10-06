@@ -1,6 +1,6 @@
 <template>
   <li class="search__result" :movie="movie">
-    <a v-link="{ name: 'movie',  params: { id: movie.imdbID } }" class="search__result-link">
+    <router-link :to="{ name: 'movie', params: { id: movie.imdbID } }" class="search__result-link">
       <h3 class="search__result-title">
         <span v-text="movie.Title"></span>
         <svg class="icon" viewBox="0 0 24 24" height="24" width="24">
@@ -8,7 +8,7 @@
         </svg>
       </h3>
       <p class="search__result-year" v-text="movie.Year"></p>
-    </a>
+    </router-link>
   </li>
 </template>
 

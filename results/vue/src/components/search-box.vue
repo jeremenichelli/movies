@@ -27,12 +27,12 @@ export default {
       this.$parent.results = [];
       this.$parent.noResults = false;
       this.isSearching = true;
-      this.$router.app.loading = true;
+      this.$parent.loading = true;
 
       search(this.searchTitle)
       .then(data => {
         this.isSearching = false;
-        this.$router.app.loading = false;
+        this.$parent.loading = false;
 
         // reset parent data every new search
         this.$parent.searchTitle = this.searchTitle
