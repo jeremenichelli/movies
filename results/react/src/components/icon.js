@@ -7,6 +7,9 @@ export default class Icon extends Component {
   propTypes: {
     type: PropTypes.string.isRequired
   }
+  shouldComponentUpdate() {
+    return false;
+  }
   render() {
     return (
       <svg className={ styles.icon } viewBox="0 0 24 24" height="24" width="24"

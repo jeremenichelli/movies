@@ -7,6 +7,8 @@ import Icon from './icon.js';
 // styles
 import styles from '../styles/search-box.less';
 
+const searchIcon = <Icon className={ styles.icon } type="search"></Icon>;
+
 export default class SearchBox extends Component {
   constructor(props) {
     super(props);
@@ -56,7 +58,7 @@ export default class SearchBox extends Component {
           value={ this.props.searchTitle } onChange={ this.handleChange }/>
         <button type="submit" className={ styles.search__button }
           disabled={ this.state.searching || this.state.searchTitle === '' }>
-          <Icon className={ styles.icon } type="search"></Icon>
+          { searchIcon }
         </button>
       </form>
     );

@@ -7,6 +7,8 @@ import Icon from './icon.js';
 // styles
 import styles from '../styles/search-result.less';
 
+const actionIcon = <Icon type="action"></Icon>;
+
 export default class SearchResult extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,7 @@ export default class SearchResult extends Component {
         <Link to={ moviePath } className={ styles.search__result_link }>
           <h3 className={ styles.search__result_title }>
             <span>{ this.props.data.Title }</span>
-            <Icon type="action"></Icon>
+            { actionIcon }
           </h3>
           <p className={ styles.search__result_year }>
             { this.props.data.Year }

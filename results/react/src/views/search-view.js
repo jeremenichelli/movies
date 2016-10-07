@@ -60,14 +60,14 @@ export default class SearchView extends Component {
   }
   componentWillUnmount() {
     persistData = {
+      searchTitle: this.state.searchTitle,
       results: this.state.results,
       totalResults: this.state.totalResults
     };
   }
   componentWillMount() {
     if (persistData) {
-      this.setState({ results: persistData.results });
-      this.setState({ totalResults: persistData.totalResults });
+      this.setState(persistData);
     }
   }
   render() {
@@ -93,17 +93,7 @@ export default class SearchView extends Component {
             <em>No search results for &laquo;{ this.state.searchTitle }&raquo;</em>
           </p>
           <ul className={ styles.search__results }>
-          {
-            results.map((result, index) => {
-              if (result && result.imdbID ) {
-                const id = `${ result.imdbID }-${ index }`;
-
-                return (
-                  <SearchResult key={ id } data={ result }></SearchResult>
-                );
-              }
-            })
-          }
+          { results.map(renderResult) }
           </ul>
         </Card>
 
@@ -116,3 +106,11 @@ export default class SearchView extends Component {
     );
   }
 };
+
+function renderResult(result, index) {
+  if (result && result.imdbID ) {
+    return (
+      <SearchResult key={ `${ result.imdbID }-${ index }` } data={ result }></SearchResult>
+    );
+  }
+}

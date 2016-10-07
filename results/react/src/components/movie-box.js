@@ -7,9 +7,12 @@ export default class MovieBox extends Component {
   propTypes: {
     data: PropTypes.object
   }
+  shouldComponentUpdate(nextProps) {
+    return this.props.data.imdbID !== nextProps.data.imdbID;
+  }
   render() {
     return (
-      <div  className={ styles.movie__box }>
+      <div className={ styles.movie__box }>
         <h3 className={ styles.movie__title }>{ this.props.data.Title }</h3>
         <dl className={ styles.movie__data }>
           <dt>Released</dt>

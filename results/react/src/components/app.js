@@ -8,6 +8,8 @@ import Icon from './icon.js';
 // styles
 import styles from '../styles/app.less';
 
+const backIcon = <Icon type="back"></Icon>;
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +41,7 @@ export default class App extends Component {
             this.props.location.pathname === '/'
           }>
             <Link to="/" className={ styles.back }>
-              <Icon type="back"></Icon>
+              { backIcon }
               <span>{ 'Back to Search' }</span>
             </Link>
           </h2>
