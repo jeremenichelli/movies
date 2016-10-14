@@ -98,17 +98,14 @@
       },
       _getMoreResults: function(e) {
         e.preventDefault();
-
+        var _this = this;
         this.loading = true;
 
         search(this.searchTitle, this.pageResults + 1)
-          .then(data => {
-            const results = this.results.concat(data.Search);
-
-            this.results = results;
-            this.pageResults = ++this.pageResults;
-
-            this.loading = false;
+          .then(function(data) {
+            _this.results = _this.results.concat(data.Search);
+            _this.pageResults = ++_this.pageResults;
+            _this.loading = false;
           });
         }
     });

@@ -1,6 +1,6 @@
 <script>
 function search(title, page) {
-  var url = `${ self.baseUrl }&s=${ encodeURI(title) }&page=${ page || 1 }`;
+  var url = self.baseUrl + '&s=' + encodeURI(title) + '&page=' + (page || 1);
 
   return cormoran.get(url);
 }

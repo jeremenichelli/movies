@@ -102,6 +102,7 @@
       },
       _onSubmit: function(e) {
         e.preventDefault();
+        var _this = this;
 
         // reset view data
         this.results = [];
@@ -111,17 +112,17 @@
         this.searching = true;
 
         search(this.title)
-          .then(data => {
+          .then(function(data) {
             var results = data.Search && data.Search.length ? data.Search : [];
 
             // enable search again
-            this.searching = false;
+            _this.searching = false;
 
             // pass data to parent component
-            this.searchTitle = this.title;
-            this.results = results;
-            this.noResults = !!results.length;
-            this.totalResults = data.totalResults;
+            _this.searchTitle = _this.title;
+            _this.results = results;
+            _this.noResults = !!results.length;
+            _this.totalResults = data.totalResults;
           });
       }
     });

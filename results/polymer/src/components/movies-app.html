@@ -128,11 +128,11 @@
           this.loading = true;
           // hacky way to obtain movie id
           var movieID = this.route.path.split('/')[2];
-
+          var _this = this;
           movie(movieID)
-           .then(data => {
-             this.movieData = data;
-             this.loading = false;
+           .then(function(data) {
+             _this.movieData = data;
+             _this.loading = false;
            });
         } else {
           this.loading = false;
