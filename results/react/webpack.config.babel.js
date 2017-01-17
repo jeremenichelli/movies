@@ -2,11 +2,14 @@ import path from 'path';
 import webpack from 'webpack'
 
 let config = {
-  entry: './src/main.js',
+  entry: {
+    main: './src/main.js',
+    vendor: [ 'react', 'react-dom' ]
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: 'main.js'
   },
   module: {
     loaders: [
@@ -30,19 +33,32 @@ let config = {
   devtool: 'eval-source-map',
   devServer: {
     historyApiFallback: true
-  }
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      names: [ 'vendor' ],
+      filename: '[name].js', minChunks: Infinity
+    }),
+
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {
-  config.devtool = 'source-map'
-  config.devServer = {}
-  config.plugins = [
+  config.devtool = 'source-map';
+  config.devServer = {};
+  config.plugins = config.plugins.concat([
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        screw_ie8 : true
+      }
     })
-  ]
+  ]);
 }
 
 export default config
