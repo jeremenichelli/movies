@@ -26,6 +26,7 @@
     "eslint": "^2.11.0",
     "eslint-loader": "^1.3.0",
     "eslint-plugin-react": "^5.1.1",
+    "html-webpack-plugin": "^2.26.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "node-sass": "^3.7.0",
@@ -37,9 +38,9 @@
     "webpack-dev-server": "^1.16.2"
   },
   "scripts": {
-    "start": "webpack-dev-server --history-api-fallback --host 0.0.0.0 --hot --inline --progress",
+    "start": "webpack-dev-server --history-api-fallback --host 0.0.0.0 --hot --progress",
     "prebuild": "npm run clean",
     "build": "NODE_ENV=production webpack -p",
-    "clean": "rimraf dist"
+    "clean": "rimraf ./static"
   }
 }

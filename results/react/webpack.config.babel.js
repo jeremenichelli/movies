@@ -1,5 +1,6 @@
 import path from 'path';
-import webpack from 'webpack'
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 let config = {
   entry: {
@@ -7,8 +8,7 @@ let config = {
     vendor: [ 'react', 'react-dom', 'cormoran' ]
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    path: path.resolve(__dirname, 'static'),
     filename: 'main.js'
   },
   module: {
@@ -32,6 +32,7 @@ let config = {
   },
   devtool: 'eval-source-map',
   devServer: {
+    contentBase: path.resolve(__dirname, 'static'),
     historyApiFallback: true
   },
   plugins: [
@@ -39,12 +40,16 @@ let config = {
       names: [ 'vendor' ],
       filename: '[name].js', minChunks: Infinity
     }),
-
+    new HtmlWebpackPlugin({
+      bundlePath: (process.env.NODE_ENV === 'production') ? '/static/build' : '',
+      template: 'src/index.ejs',
+      minify: (process.env.NODE_ENV === 'production') ? {collapseWhitespace: true, minifyCSS: true, removeAttributeQuotes: true, removeComments: true} : false
+    })
   ]
 }
 
 if (process.env.NODE_ENV === 'production') {
-  config.devtool = 'source-map';
+  config.devtool = null;
   config.devServer = {};
   config.plugins = config.plugins.concat([
     new webpack.DefinePlugin({
