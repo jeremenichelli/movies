@@ -4,7 +4,7 @@ import webpack from 'webpack'
 let config = {
   entry: {
     main: './src/main.js',
-    vendor: [ 'react', 'react-dom' ]
+    vendor: [ 'react', 'react-dom', 'cormoran' ]
   },
   output: {
     path: path.resolve(__dirname, './dist'),
