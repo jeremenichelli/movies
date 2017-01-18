@@ -1,12 +1,26 @@
 import path from 'path';
-import webpack from 'webpack'
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
+const isProduction = (process.env.NODE_ENV === 'production');
+
+const htmlMinifierConfig = {
+  collapseWhitespace: true,
+  minifyCSS: true,
+  removeAttributeQuotes: true,
+  removeComments: true
+};
+
+// common config
 let config = {
-  entry: './src/main.js',
+  entry: {
+    main: './src/main.js',
+    vendor: [ 'react', 'react-dom', 'cormoran' ]
+  },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
-    filename: 'build.js'
+    path: path.resolve(__dirname, 'static'),
+    publichPath: '/',
+    filename: 'main.js'
   },
   module: {
     loaders: [
@@ -17,32 +31,49 @@ let config = {
       },
       {
         test: /\.less$/,
-        exclude: /node_modules/,
-        loader: 'style!css?modules!less'
+        loader: 'style!css?modules&localIdentName=[folder]_[name]-[hash:base64:5]!less'
       },
       {
         test: /\.(jpg|png|ttf|eot|woff|woff2|svg)$/,
-        exclude: /node_modules/,
         loader: 'url?limit=100000'
       }
     ]
   },
-  devtool: 'eval-source-map',
-  devServer: {
-    historyApiFallback: true
-  }
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      names: [ 'vendor' ],
+      filename: '[name].js', minChunks: Infinity
+    }),
+    new HtmlWebpackPlugin({
+      bundlePath: isProduction ? '/static/build' : '',
+      template: 'src/index.ejs',
+      minify: isProduction ? htmlMinifierConfig : false
+    })
+  ]
 }
 
-if (process.env.NODE_ENV === 'production') {
-  config.devtool = 'source-map'
-  config.devServer = {}
-  config.plugins = [
+if (isProduction) {
+  // production config
+  config.plugins = config.plugins.concat([
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        screw_ie8 : true
+      }
     })
-  ]
+  ]);
+} else {
+  // dev config
+  config.devServer = {
+    contentBase: path.resolve(__dirname, 'static'),
+    historyApiFallback: true
+  };
+  config.devtool = 'eval-source-map';
 }
 
 export default config

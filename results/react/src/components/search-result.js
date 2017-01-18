@@ -18,6 +18,9 @@ export default class SearchResult extends Component {
   propTypes: {
     data: PropTypes.object
   }
+  shouldComponentUpdate(nextProps) {
+    return nextProps.imdbID !== this.props.imdbID;
+  }
   render() {
     const moviePath = `/movie/${ this.props.data.imdbID }`;
 

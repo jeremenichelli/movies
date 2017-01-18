@@ -11,6 +11,7 @@
     "email": "jmenichelli@gmail.com"
   },
   "dependencies": {
+    "cormoran": "^1.0.2",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-router": "^2.4.1"
@@ -21,12 +22,12 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.1",
-    "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.23.1",
     "eslint": "^2.11.0",
     "eslint-loader": "^1.3.0",
     "eslint-plugin-react": "^5.1.1",
+    "html-webpack-plugin": "^2.26.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "node-sass": "^3.7.0",
@@ -34,13 +35,13 @@
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
   },
   "scripts": {
-    "start": "webpack-dev-server --history-api-fallback --host 0.0.0.0 --hot --inline --progress",
+    "start": "webpack-dev-server --history-api-fallback --host 0.0.0.0 --hot --progress",
     "prebuild": "npm run clean",
     "build": "NODE_ENV=production webpack -p",
-    "clean": "rimraf dist"
+    "clean": "rimraf ./static"
   }
 }
