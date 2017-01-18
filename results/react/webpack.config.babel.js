@@ -2,6 +2,16 @@ import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
+const isProduction = (process.env.NODE_ENV === 'production');
+
+const htmlMinifierConfig = {
+  collapseWhitespace: true,
+  minifyCSS: true,
+  removeAttributeQuotes: true,
+  removeComments: true
+};
+
+// common config
 let config = {
   entry: {
     main: './src/main.js',
@@ -9,6 +19,7 @@ let config = {
   },
   output: {
     path: path.resolve(__dirname, 'static'),
+    publichPath: '/',
     filename: 'main.js'
   },
   module: {
@@ -20,20 +31,13 @@ let config = {
       },
       {
         test: /\.less$/,
-        exclude: /node_modules/,
-        loader: 'style!css?modules!less'
+        loader: 'style!css?modules&localIdentName=[folder]_[name]-[hash:base64:5]!less'
       },
       {
         test: /\.(jpg|png|ttf|eot|woff|woff2|svg)$/,
-        exclude: /node_modules/,
         loader: 'url?limit=100000'
       }
     ]
-  },
-  devtool: 'eval-source-map',
-  devServer: {
-    contentBase: path.resolve(__dirname, 'static'),
-    historyApiFallback: true
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
@@ -41,16 +45,15 @@ let config = {
       filename: '[name].js', minChunks: Infinity
     }),
     new HtmlWebpackPlugin({
-      bundlePath: (process.env.NODE_ENV === 'production') ? '/static/build' : '',
+      bundlePath: isProduction ? '/static/build' : '',
       template: 'src/index.ejs',
-      minify: (process.env.NODE_ENV === 'production') ? {collapseWhitespace: true, minifyCSS: true, removeAttributeQuotes: true, removeComments: true} : false
+      minify: isProduction ? htmlMinifierConfig : false
     })
   ]
 }
 
-if (process.env.NODE_ENV === 'production') {
-  config.devtool = null;
-  config.devServer = {};
+if (isProduction) {
+  // production config
   config.plugins = config.plugins.concat([
     new webpack.DefinePlugin({
       'process.env': {
@@ -64,6 +67,13 @@ if (process.env.NODE_ENV === 'production') {
       }
     })
   ]);
+} else {
+  // dev config
+  config.devServer = {
+    contentBase: path.resolve(__dirname, 'static'),
+    historyApiFallback: true
+  };
+  config.devtool = 'eval-source-map';
 }
 
 export default config

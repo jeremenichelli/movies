@@ -6,7 +6,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './components/app.js';
 
 render(
-  <Router>
+  <Router history={ browserHistory }>
     <Route path="/" component={ App }>
       <IndexRoute getComponent={ (location, cb) => {
           require.ensure([], () => {
@@ -14,7 +14,7 @@ render(
           });
         }
       }/>
-      <Route path="movie/:id" getComponent={ (location, cb) => {
+      <Route path="/movie/:id" getComponent={ (location, cb) => {
           require.ensure([], () => {
             cb(null, require('./views/movie-view.js').default);
           });
