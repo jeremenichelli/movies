@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 // styles
-import styles from '../styles/loading-bar.less';
+import styles from './loading-bar.less';
 
 export default class LoadingBar extends Component {
   propTypes: {

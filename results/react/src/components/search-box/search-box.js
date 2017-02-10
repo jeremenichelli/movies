@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import search from '../services/search';
+import search from '../../services/search';
 
 // components
-import Icon from './icon.js';
+import Icon from '../icon/icon.js';
 
 // styles
-import styles from '../styles/search-box.less';
+import styles from './search-box.less';
 
 const searchIcon = <Icon className={ styles.icon } type="search"></Icon>;
 

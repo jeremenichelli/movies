@@ -31,7 +31,7 @@ let config = {
       },
       {
         test: /\.less$/,
-        loader: 'style!css?modules&localIdentName=[folder]_[name]-[hash:base64:5]!less'
+        loader: 'style!css?modules&localIdentName=[folder]-[hash:base64:5]!less'
       },
       {
         test: /\.(jpg|png|ttf|eot|woff|woff2|svg)$/,

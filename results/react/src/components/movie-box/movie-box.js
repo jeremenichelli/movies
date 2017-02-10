@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 // styles
-import styles from '../styles/movie-box.less';
+import styles from './movie-box.less';
 
 export default class MovieBox extends Component {
   propTypes: {

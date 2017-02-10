@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import search from '../services/search';
+import search from '../../services/search';
 
 // components
 import { Link } from 'react-router';
-import LoadingBar from '../components/loading-bar.js';
-import Card from '../components/card.js';
-import SearchBox from '../components/search-box.js';
-import SearchResult from '../components/search-result.js';
+import LoadingBar from '../../components/loading-bar/loading-bar.js';
+import Card from '../../components/card/card.js';
+import SearchBox from '../../components/search-box/search-box.js';
+import SearchResult from '../../components/search-result/search-result.js';
 
 // styles
-import styles from '../styles/search-view.less';
+import styles from './search-view.less';
 
 let persistData = null;
 

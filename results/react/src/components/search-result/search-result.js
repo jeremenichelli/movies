@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react';
 
 // components
 import { Link } from 'react-router';
-import Icon from './icon.js';
+import Icon from '../icon/icon.js';
 
 // styles
-import styles from '../styles/search-result.less';
+import styles from './search-result.less';
 
 const actionIcon = <Icon type="action"></Icon>;
 

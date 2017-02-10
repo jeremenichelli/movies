@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import movie from '../services/movie';
+import movie from '../../services/movie';
 
 // components
 import { Link } from 'react-router';
-import Card from '../components/card.js';
-import MovieBox from '../components/movie-box.js';
+import Card from '../../components/card/card.js';
+import MovieBox from '../../components/movie-box/movie-box.js';
 
 // styles
-import styles from '../styles/movie-view.less';
+import styles from './movie-view.less';
 
 export default class MovieView extends Component {
   constructor(props) {

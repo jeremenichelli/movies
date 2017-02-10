@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 // styles
-import styles from '../styles/icon.less';
+import styles from './icon.less';
 
 export default class Icon extends Component {
   propTypes: {

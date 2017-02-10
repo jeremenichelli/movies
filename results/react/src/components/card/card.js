@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 // styles
-import styles from '../styles/card.less';
+import styles from './card.less';
 
 export default class Card extends Component {
   propTypes: {

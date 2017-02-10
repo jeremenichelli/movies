@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 // components
 import { Link } from 'react-router';
-import LoadingBar from './loading-bar.js';
-import Icon from './icon.js';
+import LoadingBar from '../loading-bar/loading-bar.js';
+import Icon from '../icon/icon.js';
 
 // styles
-import styles from '../styles/app.less';
+import styles from './app.less';
 
 const backIcon = <Icon type="back"></Icon>;
 
