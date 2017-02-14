@@ -44,5 +44,13 @@
     "prebuild": "npm run clean",
     "build": "NODE_ENV=production webpack -p",
     "clean": "rimraf ./static"
+  },
+  "babel": {
+    "presets": [ "es2015", "stage-0", "react" ],
+    "env": {
+      "production": {
+        "presets": [ "react-optimize" ]
+      }
+    }
   }
 }
