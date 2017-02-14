@@ -9,6 +9,8 @@ import Icon from '../icon/icon.js';
 import styles from './app.less';
 
 const backIcon = <Icon type="back"></Icon>;
+const homeSubtitle = <h2>Look up fast information about your favorite titles</h2>;
+const moviePageSubtitle = <h2><Link to="/" className={ styles.back }>{ backIcon } Back to Search</Link></h2>;
 
 export default class App extends Component {
   constructor(props) {
@@ -34,17 +36,7 @@ export default class App extends Component {
         <LoadingBar hidden={ !this.state.loading }></LoadingBar>
         <header>
           <h1>{ 'Movies' }</h1>
-          <h2 hidden={
-            this.props.location.pathname !== '/'
-          }>{ 'Look up fast information about your favorite titles' }</h2>
-          <h2 hidden={
-            this.props.location.pathname === '/'
-          }>
-            <Link to="/" className={ styles.back }>
-              { backIcon }
-              <span>{ 'Back to Search' }</span>
-            </Link>
-          </h2>
+          { this.props.location.pathname === '/' ? homeSubtitle : moviePageSubtitle }
         </header>
         <main className="view">
           { React.cloneElement(
