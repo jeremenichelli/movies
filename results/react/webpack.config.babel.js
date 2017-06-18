@@ -1,6 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -18,23 +19,31 @@ let config = {
   },
   output: {
     path: path.resolve(__dirname, 'static'),
-    publichPath: '/',
+    publicPath: '/',
     filename: '[name].js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        use: [
+          { loader: 'babel-loader' }
+        ]
       },
       {
         test: /\.less$/,
-        loader: 'style!css?modules&localIdentName=[folder]-[hash:base64:5]!less'
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader', query: { modules: true, localIdentName: 'localIdentName=[folder]-[hash:base64:5]' } },
+          { loader: 'less-loader' }
+        ]
       },
       {
         test: /\.(jpg|png|ttf|eot|woff|woff2|svg)$/,
-        loader: 'url?limit=100000'
+        use: [
+          { loader: 'url-loader', query: { limit: 10000 } }
+        ]
       }
     ]
   },
@@ -59,7 +68,11 @@ if (isProduction) {
         warnings: false,
         screw_ie8 : true
       }
-    })
+    }),
+    new CompressionPlugin({
+			asset: "[path].gz",
+			algorithm: "gzip"
+		})
   ]);
 } else {
   // dev config
