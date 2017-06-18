@@ -2,7 +2,7 @@ import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const isProduction = (process.env.NODE_ENV === 'production');
+const isProduction = process.env.NODE_ENV === 'production';
 
 const htmlMinifierConfig = {
   collapseWhitespace: true,
@@ -14,13 +14,12 @@ const htmlMinifierConfig = {
 // common config
 let config = {
   entry: {
-    main: './src/main.js',
-    vendor: [ 'react', 'react-dom', 'cormoran' ]
+    main: './src/main.js'
   },
   output: {
     path: path.resolve(__dirname, 'static'),
     publichPath: '/',
-    filename: 'main.js'
+    filename: '[name].js'
   },
   module: {
     loaders: [
@@ -40,12 +39,7 @@ let config = {
     ]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      names: [ 'vendor' ],
-      filename: '[name].js', minChunks: Infinity
-    }),
     new HtmlWebpackPlugin({
-      bundlePath: isProduction ? '/static/build' : '',
       template: 'src/index.ejs',
       minify: isProduction ? htmlMinifierConfig : false
     })

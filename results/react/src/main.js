@@ -5,21 +5,15 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 // components
 import App from './components/app/app.js';
 
+// views
+import SearchView from './views/search-view/search-view.js';
+import MovieView from './views/movie-view/movie-view.js';
+
 render(
   <Router history={ browserHistory }>
     <Route path="/" component={ App }>
-      <IndexRoute getComponent={ (location, cb) => {
-          require.ensure([], () => {
-            cb(null, require('./views/search-view/search-view.js').default);
-          });
-        }
-      }/>
-      <Route path="/movie/:id" getComponent={ (location, cb) => {
-          require.ensure([], () => {
-            cb(null, require('./views/movie-view/movie-view.js').default);
-          });
-        }
-      }/>
+      <IndexRoute component={ SearchView }/>
+      <Route path="/movie/:id" component={ MovieView } />
     </Route>
   </Router>,
   document.getElementById('app')
