@@ -35,7 +35,14 @@ let config = {
         test: /\.less$/,
         use: [
           { loader: 'style-loader' },
-          { loader: 'css-loader', query: { modules: true, localIdentName: 'localIdentName=[folder]-[hash:base64:5]' } },
+          {
+            loader: 'css-loader',
+            query: {
+              modules: true,
+              minimize: true,
+              localIdentName: 'localIdentName=[folder]-[hash:base64:5]'
+            }
+          },
           { loader: 'less-loader' }
         ]
       },
