@@ -6,7 +6,15 @@
 
 .movie__title {
   font-size: 1.45em;
-  margin: 0 0 .67em;
+  line-height: 1;
+  margin: 0;
+}
+
+.movie__tagline {
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 300;
+  margin: 0.5em 0 1em;
 }
 
 .movie__data {
@@ -39,9 +47,9 @@
 }
 
 .movie__plot__label {
+  .label();
   color: @secondary;
   margin: 0 5px 0 0;
-  .label();
 }
 
 .movie__plot {
@@ -52,7 +60,7 @@
   background-color: @secondary;
   float: left;
   margin: 0 25px 10px 0;
-  min-height: 100px;
+  height: 150.27px;
   width: 100px;
 }
 
@@ -60,6 +68,7 @@
 // BIG PHONES AND TABLETS
 @media (min-width: @x-medium) {
   .movie__thumb {
+    height: 225.39px;
     width: 150px;
   }
 
@@ -71,6 +80,7 @@
 // DESKTOP
 @media (min-width: @x-desktop) {
   .movie__thumb {
-    width: 200px;
+    height: 278px;
+    width: 185px;
   }
 }

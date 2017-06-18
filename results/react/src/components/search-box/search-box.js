@@ -22,11 +22,6 @@ export default class SearchBox extends Component {
     this.onSearch = this.onSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  propTypes: {
-    resetParentData: PropTypes.func,
-    setParentTitle: PropTypes.func,
-    setParentResults: PropTypes.func
-  }
   handleChange(e) {
     this.setState({ searchTitle: e.target.value });
   }
@@ -39,14 +34,12 @@ export default class SearchBox extends Component {
 
     search(this.state.searchTitle)
       .then(data => {
-        const results = data.Search && data.Search.length ? data.Search : [];
-
         // enable search again
         this.setState({ searching: false });
 
         // pass data to parent component
         this.props.setParentTitle(this.state.searchTitle);
-        this.props.setParentResults(results, data.totalResults);
+        this.props.setParentResults(data.results, data.total_results);
 
         this.props.stopLoading();
       });
@@ -63,4 +56,10 @@ export default class SearchBox extends Component {
       </form>
     );
   }
-}
+};
+
+SearchBox.propTypes = {
+  resetParentData: PropTypes.func,
+  setParentTitle: PropTypes.func,
+  setParentResults: PropTypes.func
+};

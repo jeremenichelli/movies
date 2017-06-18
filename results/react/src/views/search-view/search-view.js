@@ -11,8 +11,6 @@ import SearchResult from '../../components/search-result/search-result.js';
 // styles
 import styles from './search-view.less';
 
-let persistData = null;
-
 export default class SearchView extends Component {
   constructor(props) {
     super(props);
@@ -50,24 +48,28 @@ export default class SearchView extends Component {
 
     search(this.state.searchTitle, this.state.pageResults + 1)
       .then(data => {
-        const results = this.state.results.concat(data.Search);
+        const results = this.state.results.concat(data.results);
+        const pageResults = data.page;
 
-        this.setState({ results });
-        this.setState({ pageResults: ++this.state.pageResults });
+        this.setState({ results, pageResults });
 
         this.props.stopLoading();
       });
   }
   componentWillUnmount() {
-    persistData = {
+    const persistData = {
       searchTitle: this.state.searchTitle,
       results: this.state.results,
       totalResults: this.state.totalResults
     };
+
+    sessionStorage.setItem('persistData', JSON.stringify(persistData));
   }
   componentWillMount() {
-    if (persistData) {
-      this.setState(persistData);
+    const persistData = sessionStorage.getItem('persistData');
+
+    if (persistData !== null) {
+      this.setState(JSON.parse(persistData));
     }
   }
   render() {
@@ -82,7 +84,7 @@ export default class SearchView extends Component {
             setParentResults={ this.setResults }
             startLoading={ this.props.startLoading }
             stopLoading={ this.props.stopLoading }
-          ></SearchBox>
+          />
         </Card>
 
         <Card hollow>
@@ -108,9 +110,12 @@ export default class SearchView extends Component {
 };
 
 function renderResult(result, index) {
-  if (result && result.imdbID ) {
+  if (result !== undefined) {
     return (
-      <SearchResult key={ `${ result.imdbID }-${ index }` } data={ result }></SearchResult>
+      <SearchResult
+      key={ result.id }
+      data={ result }
+      />
     );
   }
 }

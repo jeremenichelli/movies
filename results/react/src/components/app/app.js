@@ -35,7 +35,7 @@ export default class App extends Component {
       <div className={ styles.app }>
         <LoadingBar hidden={ !this.state.loading }></LoadingBar>
         <header>
-          <h1>{ 'Movies' }</h1>
+          <h1>Movies</h1>
           { this.props.location.pathname === '/' ? homeSubtitle : moviePageSubtitle }
         </header>
         <main className="view">

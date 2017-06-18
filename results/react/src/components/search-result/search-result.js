@@ -15,27 +15,32 @@ export default class SearchResult extends Component {
 
     this.state = {};
   }
-  propTypes: {
-    data: PropTypes.object
-  }
   shouldComponentUpdate(nextProps) {
-    return nextProps.imdbID !== this.props.imdbID;
+    return nextProps.data.id !== this.props.data.id;
   }
   render() {
-    const moviePath = `/movie/${ this.props.data.imdbID }`;
+    const moviePath = `/movie/${ this.props.data.id }`;
 
     return (
       <li className={ styles.search__result }>
         <Link to={ moviePath } className={ styles.search__result_link }>
           <h3 className={ styles.search__result_title }>
-            <span>{ this.props.data.Title }</span>
+            <span>{ this.props.data.title }</span>
             { actionIcon }
           </h3>
           <p className={ styles.search__result_year }>
-            { this.props.data.Year }
+            { this.props.data.release_date.slice(0, 4) }
           </p>
         </Link>
       </li>
     );
   }
 }
+
+SearchResult.defaultProps = {
+  data: {}
+};
+
+SearchResult.propTypes = {
+  data: PropTypes.object
+};

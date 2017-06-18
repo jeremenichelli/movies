@@ -23,21 +23,24 @@ export default class MovieView extends Component {
 
     // fetch movie data
     movie(this.props.params.id)
-     .then(data => {
-       this.setState({ movie: data });
-       this.setState({ loaded: true });
+      .then(data => {
+        this.setState({ movie: data });
+        this.setState({ loaded: true });
 
-       this.props.stopLoading();
-     });
+        this.props.stopLoading();
+      });
   }
   render() {
-    const classes = this.state.loaded ? `${ styles.movie } ${ styles.loaded }` : `${ styles.movie }`;
+    const classes = `${ styles.movie } ${ this.state.loaded ? styles.loaded : '' }`;
 
     return (
       <div className={ classes }>
-      <Card>
-        <MovieBox loaded={ this.state.loaded } data={ this.state.movie }></MovieBox>
-      </Card>
+        <Card>
+          <MovieBox
+            loaded={ this.state.loaded }
+            data={ this.state.movie }
+          />
+        </Card>
       </div>
     );
   }

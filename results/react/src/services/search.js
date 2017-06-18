@@ -1,18 +1,16 @@
-import { baseUrl } from '../helpers/constants';
+import { BASE_URL, API_KEY } from '../helpers/constants';
 import cormoran from 'cormoran';
 
 cormoran
   .query('&callback')
-  .naming('searchJSONPCallback');
+  .naming('movieJSONPCallback');
 
 /*
- * Given a movie title returns a pending Promise
- * with the results from the OMDB API
+ * Given a title returns a pending Promise
+ * with the search results from the MOVIE DB API
  */
 function search(title, page) {
-  const url = `${ baseUrl }&s=${ encodeURI(title) }&page=${ page || 1 }`;
-
-  return cormoran.get(url);
+  return cormoran.get(`${BASE_URL}search/movie?api_key=${API_KEY}&query=${title}&page=${page}`);
 }
 
 export default search;

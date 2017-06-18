@@ -4,9 +4,6 @@ import React, { Component, PropTypes } from 'react';
 import styles from './loading-bar.less';
 
 export default class LoadingBar extends Component {
-  propTypes: {
-    hidden: PropTypes.boolean
-  }
   shouldComponentUpdate(nextProps) {
     return this.props.hidden !== nextProps.hidden;
   }
@@ -19,4 +16,8 @@ export default class LoadingBar extends Component {
       </div>
     );
   }
-}
+};
+
+LoadingBar.propTypes = {
+  hidden: PropTypes.bool
+};

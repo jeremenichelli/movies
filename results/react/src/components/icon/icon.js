@@ -4,9 +4,6 @@ import React, { Component, PropTypes } from 'react';
 import styles from './icon.less';
 
 export default class Icon extends Component {
-  propTypes: {
-    type: PropTypes.string.isRequired
-  }
   shouldComponentUpdate() {
     return false;
   }
@@ -17,4 +14,8 @@ export default class Icon extends Component {
       </svg>
     );
   }
-}
+};
+
+Icon.propTypes = {
+  type: PropTypes.string.isRequired
+};

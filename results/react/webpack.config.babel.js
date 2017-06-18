@@ -73,7 +73,7 @@ if (isProduction) {
     contentBase: path.resolve(__dirname, 'static'),
     historyApiFallback: true
   };
-  config.devtool = 'eval-source-map';
+  config.devtool = 'source-map';
 }
 
-export default config
+export default config;
