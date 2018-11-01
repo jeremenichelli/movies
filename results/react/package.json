@@ -14,7 +14,9 @@
     "cormoran": "^1.0.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-router": "^4.2.0"
+    "react-redux": "^5.1.0",
+    "react-router": "^4.2.0",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -38,12 +40,17 @@
   "scripts": {
     "clean": "rimraf ./static",
     "prebuild": "npm run clean",
-    "build": "NODE_ENV=production webpack",
+    "build": "NODE_ENV=production webpack --mode=production",
     "start": "NODE_ENV=development webpack-dev-server --history-api-fallback --hot --progress"
   },
   "babel": {
     "presets": [
-      "es2015",
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ],
       "react"
     ]
   }

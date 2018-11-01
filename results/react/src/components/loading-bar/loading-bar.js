@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux'
 
-// styles
 import styles from './loading-bar.less';
 
-export default class LoadingBar extends Component {
-  shouldComponentUpdate(nextProps) {
-    return this.props.hidden !== nextProps.hidden;
-  }
+const LoadingBar = (props) => {
+  const classes = !props.visible ? `${styles.progress}` : `${styles.progress} ${styles.visible}`;
 
-  render() {
-    const classes = this.props.hidden ? `${styles.progress}` : `${styles.progress} ${styles.visible}`;
+  return (
+    <div className={classes}>
+      <div className={styles.indeterminate} />
+    </div>
+  );
+}
 
-    return (
-      <div className={classes}>
-        <div className={styles.indeterminate}/>
-      </div>
-    );
-  }
-};
+export default connect(
+  (state) => ({ visible: state.loading })
+)(LoadingBar)

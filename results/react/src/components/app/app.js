@@ -17,10 +17,6 @@ const BackIcon = <Icon type="back"></Icon>;
 export default class App extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      loading: false
-    };
   }
 
   render() {
@@ -28,7 +24,7 @@ export default class App extends Component {
       <div className={styles.app}>
         <header>
         <h1>Movies</h1>
-          <LoadingBar hidden={!this.state.loading}></LoadingBar>
+          <LoadingBar/>
           <Route
             exact
             path="/"

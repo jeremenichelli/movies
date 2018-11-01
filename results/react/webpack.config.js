@@ -40,7 +40,7 @@ let config = {
             loader: 'css-loader',
             query: {
               modules: true,
-              localIdentName: 'localIdentName=[folder]-[hash:base64:5]'
+              localIdentName: '[folder]-[hash:base64:5]'
             }
           },
           { loader: 'less-loader' }
@@ -87,7 +87,7 @@ if (isProduction) {
     contentBase: path.resolve(__dirname, 'static'),
     historyApiFallback: true
   };
-  config.devtool = 'source-map';
+  config.devtool = 'inline-source-map';
 }
 
 module.exports = config;
