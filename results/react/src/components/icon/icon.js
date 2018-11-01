@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import svgs from '../../helpers/svgs.js'
 
 // styles
@@ -13,17 +13,12 @@ export default class Icon extends Component {
   render() {
     return (
       <svg
-        className={ styles.icon }
+        className={styles.icon}
         viewBox="0 0 24 24"
         height="24"
         width="24"
-        dangerouslySetInnerHTML={{ __html: svgs[ this.props.type ] }}
-      >
-      </svg>
+        dangerouslySetInnerHTML={{__html: svgs[ this.props.type ]}}
+      />
     );
   }
-};
-
-Icon.propTypes = {
-  type: PropTypes.string.isRequired
 };

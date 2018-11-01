@@ -1,7 +1,7 @@
-import path from 'path';
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import CompressionPlugin from 'compression-webpack-plugin';
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -22,6 +22,7 @@ let config = {
     publicPath: '/',
     filename: '[name].js'
   },
+  mode: isProduction ? 'production' : 'development',
   module: {
     rules: [
       {
@@ -39,7 +40,6 @@ let config = {
             loader: 'css-loader',
             query: {
               modules: true,
-              minimize: true,
               localIdentName: 'localIdentName=[folder]-[hash:base64:5]'
             }
           },
@@ -53,6 +53,12 @@ let config = {
         ]
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      automaticNameDelimiter: '_'
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -70,12 +76,6 @@ if (isProduction) {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        screw_ie8 : true
-      }
-    }),
     new CompressionPlugin({
 			asset: "[path].gz",
 			algorithm: "gzip"
@@ -90,4 +90,4 @@ if (isProduction) {
   config.devtool = 'source-map';
 }
 
-export default config;
+module.exports = config;

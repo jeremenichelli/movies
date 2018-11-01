@@ -1,20 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 // components
 import App from './components/app/app.js';
 
-// views
-import SearchView from './views/search-view/search-view.js';
-import MovieView from './views/movie-view/movie-view.js';
-
 render(
-  <Router history={ browserHistory }>
-    <Route path="/" component={ App }>
-      <IndexRoute component={ SearchView }/>
-      <Route path="/movie/:id" component={ MovieView } />
-    </Route>
+  <Router>
+    <App />
   </Router>,
   document.getElementById('app')
 );
