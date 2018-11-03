@@ -6,12 +6,10 @@ import { createStore } from 'redux'
 import App from './components/app/app.js';
 import reducers from './reducers'
 
-const initialState = {
-  loading: false
-};
+const store = createStore(reducers)
 
-const store = createStore(reducers, initialState)
-store.subscribe(() => console.log(store.getState()))
+// store.subscribe(() => console.log(store.getState()))
+
 render(
   <Provider store={store}>
     <Router>
