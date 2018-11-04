@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import search from '../../services/search';
 import Icon from '../icon/icon.js';
 import styles from './search-box.less';
@@ -37,8 +36,8 @@ class SearchBox extends Component {
       .then(data => {
         setSearchTitle(query)
         setResults(data.results, data.total_results)
-        this.setState({ searching: false });
         stopLoading()
+        this.setState({ searching: false });
       });
   }
 
@@ -62,12 +61,12 @@ class SearchBox extends Component {
   }
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  startLoading: () => dispatch({ type: 'START_LOADING' }),
-  stopLoading: () => dispatch({ type: 'STOP_LOADING' }),
-  resetResults: () => dispatch({ type: 'RESET_RESULTS' }),
-  setResults: (results, total) => dispatch({ type: 'SET_RESULTS', results, total }),
-  setSearchTitle: (title) => dispatch({ type: 'NEW_SEARCH', title })
-})
+SearchBox.defaultProps = {
+  startLoading: f => f,
+  stopLoading: f => f,
+  resetResults: f => f,
+  setSearchTitle: f => f,
+  setResults: f => f,
+}
 
-export default connect(null, mapDispatchToProps)(SearchBox)
+export default SearchBox

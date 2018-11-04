@@ -22,9 +22,6 @@
 
   &:before,
   &:after {
-    -moz-animation: indeterminate 1s cubic-bezier(.65, .815, .735, .395) infinite;
-    -webkit-animation: indeterminate 1s cubic-bezier(.65, .815, .735, .395) infinite;
-    animation: indeterminate 1s cubic-bezier(.65, .815, .735, .395) infinite;
     content: '';
     bottom: 0;
     top: 0;
@@ -32,6 +29,12 @@
     background-color: inherit;
     left: 0;
     will-change: left,right;
+
+    .visible & {
+      -moz-animation: indeterminate 1s cubic-bezier(.65, .815, .735, .395) infinite;
+      -webkit-animation: indeterminate 1s cubic-bezier(.65, .815, .735, .395) infinite;
+      animation: indeterminate 1s cubic-bezier(.65, .815, .735, .395) infinite;
+    }
   }
 }
 

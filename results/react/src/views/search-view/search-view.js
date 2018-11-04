@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import search from '../../services/search';
 
 import Card from '../../components/card/card.js';
-import SearchBox from '../../components/search-box/search-box.js';
+import SearchBox from '../../components/search-box/search-box-connected.js';
 import SearchResult from '../../components/search-result/search-result.js';
 
 import styles from './search-view.less';
